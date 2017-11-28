@@ -87,37 +87,56 @@ public class DPO1_U4_A1 {
                     }
                     break;
                 case 2:
-                    Productos.getProductos().stream().map(d 
-                            -> "Clave " + d.getClave() + 
-                                    "Nombre " + d.getNombre() +
-                                    "Precio " + d.getPrecio() +
-                                    "Cantidad " + d.getCantidad()).forEach(System.out::println);
+                    MostrarProductos(Productos);
                     break;
                 case 3:
-                    System.out.println("Total de productos almacenados: " + Productos.getProductos().size());
+                    MostrarTotalProductos(Productos);
                     break;
                 case 4:
-                    if (Productos.getProductos().isEmpty()) {
-                        System.out.println("El Arreglo esta vacio");
-                    }else{
-                        double sum = 0;
-                        for (ProductoData arg : Productos.getProductos()) {
-                            sum += arg.getPrecio();
-                        }
-                        System.out.println("El promedio de los productos es: " + sum / Productos.getProductos().size());
-                    }
+                    MostrarPrecioPromedio(Productos);
                     break;
                 case 5:
-                    float min = Productos.getProductos().stream().map(a -> a.getPrecio()).min(Comparator.naturalOrder()).get();
-                    System.out.println("Producto Minimo :" + min);
+                    MostrarProductoMinimo(Productos);
                     break;
                 case 6: 
-                    float max = Productos.getProductos().stream().map(a -> a.getPrecio()).max(Comparator.naturalOrder()).get();
-                    System.out.println("Producto Maximo :" + max);
+                    MostrarProductoMaximo(Productos);
                     break;
             }    
         } while (opcion != 7);
         System.out.println("Programa terminado..");
     }
-    
+
+    private static void MostrarProductos(Productos productos) {
+        productos.getProductos().stream().map(d 
+                -> "Clave " + d.getClave() + 
+                        "Nombre " + d.getNombre() +
+                        "Precio " + d.getPrecio() +
+                        "Cantidad " + d.getCantidad()).forEach(System.out::println);
+    }
+
+    private static void MostrarTotalProductos(Productos productos) {
+        System.out.println("Total de productos almacenados: " + productos.getProductos().size());
+    }
+
+    private static void MostrarPrecioPromedio(Productos productos) {
+        if (productos.getProductos().isEmpty()) {
+            System.out.println("El Arreglo esta vacio");
+        }else{
+            double sum = 0;
+            for (ProductoData arg : productos.getProductos()) {
+                sum += arg.getPrecio();
+            }
+            System.out.println("El promedio de los productos es: " + sum / productos.getProductos().size());
+        }
+    }
+
+    private static void MostrarProductoMinimo(Productos productos) {
+        float min = productos.getProductos().stream().map(a -> a.getPrecio()).min(Comparator.naturalOrder()).get();
+        System.out.println("Producto Minimo :" + min);
+    }
+
+    private static void MostrarProductoMaximo(Productos productos) {
+        float max = productos.getProductos().stream().map(a -> a.getPrecio()).max(Comparator.naturalOrder()).get();
+        System.out.println("Producto Maximo :" + max);
+    }    
 }
